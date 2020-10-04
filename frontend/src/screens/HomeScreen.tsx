@@ -10,7 +10,7 @@ export const HomeScreen = () => {
       <Row>
         {products.map((product) => (
           <Col sm={12} md={6} lg={4}>
-            <ProductCard product={product} />
+            <ProductCard key={product._id} product={product} />
           </Col>
         ))}
       </Row>

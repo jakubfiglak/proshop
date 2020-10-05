@@ -14,8 +14,6 @@ export const Rating = ({ value, text, color = '#f8e825' }: Props) => {
     ? new Array(5 - (intValue + 1)).fill(0)
     : new Array(5 - intValue).fill(0);
 
-  console.log(fullStars);
-
   return (
     <div className="rating">
       {fullStars.map((_, idx) => (

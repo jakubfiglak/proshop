@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import { Rating } from '../components/Rating';
-import products from '../products';
+import { Product } from '../types';
 
 type ParamTypes = {
   id: string;
@@ -11,7 +12,17 @@ type ParamTypes = {
 export const ProductScreen = () => {
   const { id } = useParams<ParamTypes>();
 
-  const product = products.find((p) => p._id === id);
+  const [product, setProduct] = useState<Product>();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${id}`);
+
+      setProduct(data);
+    };
+
+    fetchProduct();
+  }, [id]);
 
   if (!product) {
     return <p>No product found with the id of {id}</p>;

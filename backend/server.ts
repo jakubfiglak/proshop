@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import { connectDB } from './config/db';
-import products from './data/products';
+import { products } from './data/products';
 
 dotenv.config();
 
@@ -20,12 +20,12 @@ app.get('/api/products', (req, res) => {
 app.get('/api/products/:id', (req, res) => {
   const { id } = req.params;
 
-  const product = products.find((p) => p._id === id);
-  if (!product) {
-    return res.json(`No product found with the id of ${id}`);
-  }
+  // const product = products.find((p) => p._id === id);
+  // if (!product) {
+  //   return res.json(`No product found with the id of ${id}`);
+  // }
 
-  res.json(product);
+  // res.json(product);
 });
 
 const PORT = process.env.PORT || 5000;
